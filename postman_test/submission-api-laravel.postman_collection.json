@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "f1d4417b-69b9-4341-b8be-f7393d3c09a7",
+		"name": "pt-psa-api-laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19373598"
+	},
+	"item": [
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "Add User 200",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protokol}}{{url}}{{domain}}/api/users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Login User 200",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protokol}}{{url}}{{domain}}/api/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User 200",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/auth"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SALES",
+			"item": [
+				{
+					"name": "Add Sales 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('should respose with correct property and message', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"\r",
+									"    pm.environment.set('salId', responseJson.data.addedsales.sales.sal_id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sal_nm\": \"HAETAMI\",\r\n    \"sal_bekerjasejak\": \"2023-09-30\",\r\n    \"sal_kta_id\": \"JKT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales 200",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales By Id 200",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/S010"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales By Id 404",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/xxx"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sales By Id 404",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sal_nm\": \"HAE\",\r\n    \"sal_bekerjasejak\": \"2023-09-30\",\r\n    \"sal_kta_id\": \"JKT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/xxx"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sales By Id 422",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sal_nm\": \"TENHURI\",\r\n    \"sal_bekerjasejak\": \"2023-09-30\",\r\n    \"sal_kta_id\": \"JKT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/S010"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sales By Id 200",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sal_nm\": \"TAMI HAITAM\",\r\n    \"sal_bekerjasejak\": \"2023-09-30\",\r\n    \"sal_kta_id\": \"BAL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/{{salId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sales By id 404",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/xxx"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sales By id 422",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/S010"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sales By id 204",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{protokol}}{{url}}{{domain}}/api/sales/{{salId}}"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
